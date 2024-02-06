@@ -1,13 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from . import views
+from django.urls import path
 
-# Create your views here.
-
-def index(request):
-    return render(request, 'eduweb/index.html')
-
-def chat(request):
-    return render(request, 'eduweb/chat.html')
-
-def room(request, room_name):
-    return render(request, "eduweb/room.html", {"room_name": room_name})
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('chat', views.chat, name='chat'),
+    path("<str:room_name>/", views.room, name="room")
+]
